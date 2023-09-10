@@ -5,13 +5,13 @@ import { Text, View } from "../../components/Themed";
 
 export default function TabOneScreen() {
   return (
-    <View className="text-red-500 bg-lime-600">
-      <Text className="text-red-400">Hello from React Native!</Text>
-      {/* <View
+    <View style={styles.container}>
+      <Text style={styles.title}>Hello from React Native!</Text>
+      <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
-      /> */}
+      />
       <EditScreenInfo path="app/(tabs)/index.tsx" />
     </View>
   );
