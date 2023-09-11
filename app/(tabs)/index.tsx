@@ -1,35 +1,29 @@
-import { StyleSheet } from "react-native";
+import React from "react";
+import { Image } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
+// TODO: Logo - As web version does not support Lottie, there should be a conditional serving (as Lottie or gif) according to the platform.
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello from React Native!</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    <SafeAreaView>
+      <ScrollView>
+        {/* <Lottie
+          autoPlay
+          loop
+          source={require("../../assets/logo/sooon.json")}
+          style={{ width: 90, height: 90, alignSelf: "center" }}
+        /> */}
+        <Image
+          source={require("../../assets/images/sooon.gif")}
+          style={{
+            width: 90,
+            height: 90,
+            alignSelf: "center",
+          }}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});
