@@ -24,7 +24,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Outfit: require("../assets/fonts/Outfit-Regular.ttf"),
+    Outfit: require("../assets/fonts/Outfit-VariableFont_wght.ttf"),
     ...FontAwesome.font,
   });
 
