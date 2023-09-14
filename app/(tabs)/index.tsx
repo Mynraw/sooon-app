@@ -1,19 +1,42 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Image, Platform } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { RefreshControl, ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Lottie from "lottie-react-native";
-
-// TODO: Logo - As web version does not support Lottie, there should be a conditional serving (as Lottie or gif) according to the platform.
+import { Text } from "../../components/Themed";
 
 export default function TabOneScreen() {
+  const [refreshing, setRefreshing] = useState<Boolean>(false);
+
+  const handleRefresh = useCallback(() => {
+    setRefreshing(true);
+
+    setTimeout(() => {
+      // TODO: Make this happen relevant with some API etc.
+      setRefreshing(false);
+    }, 3000);
+  }, []);
+
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{
+          backgroundColor: "#F8F8F8",
+          paddingHorizontal: 10,
+          paddingTop: Platform.select({ android: 30 }),
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            tintColor={"transparent"}
+            onRefresh={handleRefresh}
+          />
+        }
+      >
         {Platform.OS === "ios" ? (
           <Lottie
             autoPlay
-            loop
+            loop={!!refreshing}
             source={require("../../assets/logo/sooon.json")}
             style={{ width: 90, height: 90, alignSelf: "center" }}
           />
@@ -28,6 +51,7 @@ export default function TabOneScreen() {
           />
         )}
       </ScrollView>
+      <Text style={{ textAlign: "center" }}>Merhabalar AQ</Text>
     </SafeAreaView>
   );
 }
